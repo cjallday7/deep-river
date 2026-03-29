@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand fonts */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-lora);
+
+  /* Brand colors — palette */
+  --color-indigo-deep: #1e1b4b;
+  --color-indigo-mid: #312e81;
+  --color-indigo-light: #4338ca;
+  --color-parchment: #fdf6e3;
+  --color-parchment-warm: #f0e6cc;
+  --color-gold: #c9a84c;
+  --color-gold-light: #dfc06e;
+  --color-warm-950: #0f0a07;
+  --color-warm-900: #1c1410;
+  --color-warm-800: #2d2520;
+  --color-warm-700: #3d3228;
+  --color-warm-600: #5a4a3a;
+}
+
+@theme inline {
+  /* Semantic tokens — mapped to CSS variables for light/dark switching */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+}
+
+/* Light mode */
+:root {
+  --background: #fdf6e3;
+  --foreground: #1e1b4b;
+  --muted: #f0e6cc;
+  --muted-foreground: #6b5c45;
+  --accent: #c9a84c;
+  --accent-foreground: #1e1b4b;
+  --border: #e8d9c0;
+  --ring: #c9a84c;
+  --card: #fdf0d0;
+  --card-foreground: #1e1b4b;
+  --radius: 0.5rem;
+}
+
+/* Warm dark mode — dark brown/charcoal, not pure black */
+.dark {
+  --background: #1c1410;
+  --foreground: #fdf6e3;
+  --muted: #2d2520;
+  --muted-foreground: #a89880;
+  --accent: #c9a84c;
+  --accent-foreground: #fdf6e3;
+  --border: #3d3228;
+  --ring: #c9a84c;
+  --card: #241a14;
+  --card-foreground: #fdf6e3;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
