@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllSpiritualSlugs, getSpiritualBySlug } from "@/lib/spirituals";
 import SpiritualHeader from "@/components/SpiritualHeader";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import { mdxComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 
 interface Props {
@@ -33,14 +35,14 @@ export default async function SpiritualPage({ params }: Props) {
     <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-12 md:py-16">
       <SpiritualHeader spiritual={spiritual} />
 
-      {/* MDX content */}
+      <YouTubeEmbed url={spiritual.youtubeEmbedUrl} title={spiritual.title} />
+
       <article className="prose prose-neutral dark:prose-invert max-w-none
-        prose-headings:font-serif prose-headings:text-indigo-deep dark:prose-headings:text-parchment
+        prose-headings:font-serif
         prose-p:text-foreground prose-p:leading-relaxed
-        prose-blockquote:border-gold prose-blockquote:text-muted-foreground
-        prose-hr:border-border prose-a:text-gold dark:prose-a:text-gold-light
-        prose-strong:text-foreground">
-        <MDXRemote source={spiritual.content} />
+        prose-strong:text-foreground
+        prose-ul:text-foreground prose-ol:text-foreground">
+        <MDXRemote source={spiritual.content} components={mdxComponents} />
       </article>
     </main>
   );
