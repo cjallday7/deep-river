@@ -9,7 +9,7 @@ interface Props {
  */
 export default function VariantVerse({ children, label }: Props) {
   return (
-    <div className="my-8 pl-4 md:pl-6 border-l-2 border-border">
+    <div className="not-prose my-8 pl-4 md:pl-6 border-l-2 border-border">
       {label && (
         <p className="text-xs text-muted-foreground uppercase tracking-wide font-sans mb-3">
           {label}
@@ -18,7 +18,7 @@ export default function VariantVerse({ children, label }: Props) {
       <div
         className="
           font-serif text-lg md:text-xl leading-relaxed
-          text-muted-foreground whitespace-pre-line
+          text-muted-foreground
           space-y-4 italic
         "
       >
