@@ -4,49 +4,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 import SpiritualCard from "@/components/SpiritualCard";
 import { createSearchIndex, searchIndex } from "@/lib/search";
+import { applyFilters, deriveFilterOptions, type FilterMap } from "@/lib/filters";
 import type { SpiritualFrontmatter } from "@/types/spiritual";
 
 interface Props {
   spirituals: SpiritualFrontmatter[];
 }
 
-type FilterMap = Record<string, string[]>;
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function toggle(arr: string[], value: string): string[] {
   return arr.includes(value) ? arr.filter((v) => v !== value) : [...arr, value];
-}
-
-function applyFilters(
-  spirituals: SpiritualFrontmatter[],
-  filters: FilterMap
-): SpiritualFrontmatter[] {
-  return spirituals.filter((s) => {
-    if (filters.era.length > 0 && !filters.era.includes(s.era)) return false;
-    if (filters.region.length > 0 && !filters.region.includes(s.region))
-      return false;
-    if (
-      filters.themes.length > 0 &&
-      !s.themes.some((t) => filters.themes.includes(t))
-    )
-      return false;
-    if (
-      filters.collections.length > 0 &&
-      !s.collections.some((c) => filters.collections.includes(c))
-    )
-      return false;
-    return true;
-  });
-}
-
-function deriveOptions(spirituals: SpiritualFrontmatter[]) {
-  return {
-    era: [...new Set(spirituals.map((s) => s.era))].sort(),
-    region: [...new Set(spirituals.map((s) => s.region))].sort(),
-    themes: [...new Set(spirituals.flatMap((s) => s.themes))].sort(),
-    collections: [...new Set(spirituals.flatMap((s) => s.collections))].sort(),
-  };
 }
 
 function useDebounce<T>(value: T, delay: number): T {
@@ -87,7 +55,7 @@ export default function BrowseClient({ spirituals }: Props) {
   const fuseIndex = useMemo(() => createSearchIndex(spirituals), [spirituals]);
 
   // Derive available filter options from the archive
-  const options = useMemo(() => deriveOptions(spirituals), [spirituals]);
+  const options = useMemo(() => deriveFilterOptions(spirituals), [spirituals]);
 
   // Search results (null = no active query → use full set)
   const searchResults = useMemo(
