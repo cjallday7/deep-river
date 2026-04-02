@@ -1,12 +1,14 @@
 import Link from "next/link";
+import Highlight from "@/components/Highlight";
 import type { SpiritualFrontmatter } from "@/types/spiritual";
 
 interface Props {
   spiritual: SpiritualFrontmatter;
   featured?: boolean;
+  searchQuery?: string;
 }
 
-export default function SpiritualCard({ spiritual, featured = false }: Props) {
+export default function SpiritualCard({ spiritual, featured = false, searchQuery = "" }: Props) {
   return (
     <Link
       href={`/spirituals/${spiritual.slug}`}
@@ -24,7 +26,7 @@ export default function SpiritualCard({ spiritual, featured = false }: Props) {
           ${featured ? "text-2xl md:text-3xl" : "text-xl"}
         `}
       >
-        {spiritual.title}
+        <Highlight text={spiritual.title} query={searchQuery} />
       </h3>
 
       {/* Alternate titles */}
@@ -52,7 +54,7 @@ export default function SpiritualCard({ spiritual, featured = false }: Props) {
           ${featured ? "text-base md:text-lg" : "text-sm"}
         `}
       >
-        {spiritual.excerpt}
+        <Highlight text={spiritual.excerpt} query={searchQuery} />
       </p>
 
       {/* Read link */}
