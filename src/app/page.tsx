@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllSpiritualsMetadata, getSpiritualBySlug } from "@/lib/spirituals";
 import SpiritualCard from "@/components/SpiritualCard";
+import WaterCanvas from "@/components/WaterCanvas";
 
 const FEATURED_SLUG = "deep-river";
 
@@ -15,9 +16,28 @@ export default function HomePage() {
     <main className="flex-1">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="bg-indigo-deep text-parchment px-4 py-20 md:py-28">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="font-serif text-5xl md:text-7xl leading-tight mb-6 text-parchment">
+      <section className="relative bg-indigo-deep text-parchment px-4 py-20 md:py-28 overflow-hidden">
+
+        {/* Water animation layer */}
+        <div className="absolute inset-0">
+          <WaterCanvas />
+        </div>
+
+        {/* Gradient overlay for text legibility */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(30,27,75,0.65) 0%, rgba(30,27,75,0.45) 40%, rgba(30,27,75,0.55) 100%)",
+          }}
+        />
+
+        {/* Text content — above canvas and overlay */}
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <h1
+            className="font-serif text-5xl md:text-7xl leading-tight mb-6 text-parchment"
+            style={{ textShadow: "0 2px 20px rgba(30,27,75,0.9)" }}
+          >
             Deep River
           </h1>
           <p className="text-lg md:text-xl leading-relaxed text-parchment/80 max-w-2xl mb-4">
@@ -32,6 +52,7 @@ export default function HomePage() {
           </p>
           <div className="mt-10 h-px bg-gold/40 w-12" />
         </div>
+
       </section>
 
       {/* ── Featured spiritual ────────────────────────────────────────────── */}
