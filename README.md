@@ -2,7 +2,7 @@
 
 An education-first digital archive of Negro spirituals — preserving the songs, stories, and scholarship of a sacred tradition. Centered on Black Americans as the intended community; open to all.
 
-**Live site:** [deepriver.org](https://deepriver.org) *(coming soon)*
+**Live site:** [deepriver.site](https://deepriver.site)
 **Tracking board:** [GitHub Issues](https://github.com/cjallday7/deep-river/issues)
 
 ---

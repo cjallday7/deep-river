@@ -89,7 +89,7 @@ async function sendEmailNotification(payload: SuggestionPayload): Promise<void> 
   ].join("\n");
 
   await resend.emails.send({
-    from: "Deep River <noreply@deepriver.org>",
+    from: "Deep River <noreply@deepriver.site>",
     to: maintainerEmail,
     subject,
     text,
