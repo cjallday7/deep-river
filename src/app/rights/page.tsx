@@ -135,7 +135,7 @@ export default function RightsPage() {
             <div className="bg-muted rounded-lg p-4 font-sans text-sm text-foreground">
               <p>
                 Deep River: A Digital Archive of Negro Spirituals.
-                deepriver.org. Accessed [date].
+                deepriver.site. Accessed [date].
               </p>
             </div>
             <p>
@@ -145,7 +145,7 @@ export default function RightsPage() {
             <div className="bg-muted rounded-lg p-4 font-sans text-sm text-foreground">
               <p>
                 "Deep River." Deep River: A Digital Archive of Negro
-                Spirituals. deepriver.org/spirituals/deep-river. Accessed
+                Spirituals. deepriver.site/spirituals/deep-river. Accessed
                 [date].
               </p>
             </div>
