@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
@@ -59,6 +60,7 @@ export default function RootLayout({
         <SiteHeader />
         <div className="flex-1 flex flex-col">{children}</div>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
