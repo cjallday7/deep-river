@@ -16,9 +16,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const collection = getCollectionBySlug(slug);
   if (!collection) return {};
+  const path = `/collections/${slug}`;
+  const title = `${collection.name} — Deep River`;
+
   return {
-    title: `${collection.name} — Deep River`,
+    title,
     description: collection.description,
+    alternates: { canonical: path },
+    openGraph: {
+      title,
+      description: collection.description,
+      url: path,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: collection.description,
+    },
   };
 }
 

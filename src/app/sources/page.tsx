@@ -4,6 +4,8 @@ export const metadata: Metadata = {
   title: "Sources & Bibliography — Deep River",
   description:
     "Primary sources, key scholars, and further reading on Negro spirituals.",
+  alternates: { canonical: "/sources" },
+  openGraph: { url: "/sources" },
 };
 
 const PRIMARY_SOURCES = [

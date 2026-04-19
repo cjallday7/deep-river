@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: "Suggest a Song or Correction — Deep River",
   description:
     "Suggest a spiritual that should be documented in the Deep River archive, or submit a correction to an existing entry.",
+  alternates: { canonical: "/suggest" },
+  openGraph: { url: "/suggest" },
 };
 
 interface Props {

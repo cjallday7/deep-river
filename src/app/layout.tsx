@@ -3,8 +3,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
+import JsonLdWebsite from "@/components/JsonLdWebsite";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { getSiteUrl, SITE_DESCRIPTION } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,15 +21,42 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "Deep River — A Repository of Negro Spirituals",
-  description:
-    "An education-first digital archive of Negro spirituals, preserving the songs, stories, and scholarship of a sacred tradition.",
-  openGraph: {
-    title: "Deep River",
-    description:
-      "An education-first digital archive of Negro spirituals, preserving the songs, stories, and scholarship of a sacred tradition.",
-    type: "website",
+  description: SITE_DESCRIPTION,
+  applicationName: "Deep River",
+  authors: [{ name: "Deep River", url: getSiteUrl() }],
+  creator: "Deep River",
+  keywords: [
+    "Negro spirituals",
+    "African American spirituals",
+    "Black sacred music",
+    "folk hymns",
+    "music archive",
+    "education",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
+  openGraph: {
+    title: "Deep River — A Repository of Negro Spirituals",
+    description: SITE_DESCRIPTION,
+    siteName: "Deep River",
+    locale: "en_US",
+    type: "website",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Deep River — A Repository of Negro Spirituals",
+    description: SITE_DESCRIPTION,
+  },
+  category: "education",
 };
 
 export default function RootLayout({
@@ -58,6 +87,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans antialiased bg-background text-foreground">
+        <JsonLdWebsite />
         <SiteHeader />
         <div className="flex-1 flex flex-col">{children}</div>
         <SiteFooter />

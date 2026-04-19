@@ -4,6 +4,7 @@ import { getAllSpiritualsMetadata, getAllSpiritualSlugs, getSpiritualBySlug } fr
 import SpiritualHeader from "@/components/SpiritualHeader";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import SpiritualFooter from "@/components/SpiritualFooter";
+import JsonLdArticle from "@/components/JsonLdArticle";
 import { mdxComponents } from "@/components/mdx";
 import type { Metadata } from "next";
 
@@ -20,9 +21,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const spiritual = getSpiritualBySlug(slug);
   if (!spiritual) return {};
 
+  const path = `/spirituals/${slug}`;
+  const title = `${spiritual.title} — Deep River`;
+
   return {
-    title: `${spiritual.title} — Deep River`,
+    title,
     description: spiritual.excerpt,
+    alternates: { canonical: path },
+    openGraph: {
+      title,
+      description: spiritual.excerpt,
+      type: "article",
+      url: path,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: spiritual.excerpt,
+    },
   };
 }
 
@@ -44,6 +60,7 @@ export default async function SpiritualPage({ params }: Props) {
 
   return (
     <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-12 md:py-16">
+      <JsonLdArticle spiritual={spiritual} slug={slug} />
       <SpiritualHeader spiritual={spiritual} />
 
       <YouTubeEmbed url={spiritual.youtubeEmbedUrl} title={spiritual.title} />

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Spirituals — Deep River",
   description:
     "Browse and search the Deep River archive of Negro spirituals, filterable by era, region, theme, and collection.",
+  alternates: { canonical: "/spirituals" },
+  openGraph: { url: "/spirituals" },
 };
 
 export default function SpiritualsPage() {

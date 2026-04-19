@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: "Collections — Deep River",
   description:
     "Browse Negro spirituals organized by the scholarly collections and traditions that documented them.",
+  alternates: { canonical: "/collections" },
+  openGraph: { url: "/collections" },
 };
 
 export default function CollectionsPage() {

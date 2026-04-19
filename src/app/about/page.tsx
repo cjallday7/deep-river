@@ -4,6 +4,8 @@ export const metadata: Metadata = {
   title: "About — Deep River",
   description:
     "The mission, editorial standards, and origins of the Deep River archive.",
+  alternates: { canonical: "/about" },
+  openGraph: { url: "/about" },
 };
 
 export default function AboutPage() {

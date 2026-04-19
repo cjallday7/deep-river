@@ -4,6 +4,8 @@ export const metadata: Metadata = {
   title: "Rights & Usage — Deep River",
   description:
     "Licensing, copyright, and citation guidelines for Deep River content.",
+  alternates: { canonical: "/rights" },
+  openGraph: { url: "/rights" },
 };
 
 export default function RightsPage() {

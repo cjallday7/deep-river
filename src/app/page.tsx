@@ -1,7 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getAllSpiritualsMetadata, getSpiritualBySlug } from "@/lib/spirituals";
 import SpiritualCard from "@/components/SpiritualCard";
 import WaterCanvas from "@/components/WaterCanvas";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const FEATURED_SLUG = "deep-river";
 
