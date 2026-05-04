@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllSpiritualsMetadata, getSpiritualBySlug } from "@/lib/spirituals";
+import { getAllSpiritualsMetadata } from "@/lib/spirituals";
 import SpiritualCard from "@/components/SpiritualCard";
 import WaterCanvas from "@/components/WaterCanvas";
 
@@ -8,14 +8,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const FEATURED_SLUG = "deep-river";
+export const revalidate = 3600;
 
 export default function HomePage() {
   const all = getAllSpiritualsMetadata();
 
-  // Use the designated featured slug, falling back to the first available entry
-  const featured =
-    getSpiritualBySlug(FEATURED_SLUG) ?? (all.length > 0 ? all[0] : null);
+  const dayIndex = Math.floor(Date.now() / 86_400_000) % all.length;
+  const featured = all.length > 0 ? all[dayIndex] : null;
 
   return (
     <main className="flex-1">
