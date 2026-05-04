@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SuggestForm from "./SuggestForm";
 import type { Metadata } from "next";
 
@@ -26,7 +27,20 @@ export default async function SuggestPage({ searchParams }: Props) {
         <p className="text-muted-foreground leading-relaxed">
           Deep River is a curated archive — all content is reviewed before
           publication. Use this form to suggest a spiritual that should be
-          documented here, or to flag an error in an existing entry.
+          documented in the{" "}
+          <Link href="/spirituals" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            archive
+          </Link>
+          , or to flag an error in an existing entry. Before submitting, you
+          may want to review our{" "}
+          <Link href="/about" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            editorial standards
+          </Link>{" "}
+          and{" "}
+          <Link href="/rights" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            rights &amp; usage policy
+          </Link>
+          .
         </p>
       </header>
 

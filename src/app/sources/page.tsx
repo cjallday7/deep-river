@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,28 +15,38 @@ const PRIMARY_SOURCES = [
       'Du Bois, W.E.B. "The Sorrow Songs." The Souls of Black Folk. Chicago: A.C. McClurg & Co., 1903.',
     url: "https://www.gutenberg.org/ebooks/408",
     note: "Chapter XIV. The foundational scholarly treatment of the spirituals as art.",
+    collectionHref: "/collections/du-bois-sorrow-songs",
+    collectionLabel: "Du Bois Sorrow Songs",
   },
   {
     citation:
       "Marsh, J.B.T. The Story of the Jubilee Singers; With Their Songs. Boston: Houghton, Osgood, 1880.",
     url: "https://www.gutenberg.org/ebooks/22174",
     note: "Documents the Fisk Jubilee Singers' repertoire with musical notation.",
+    collectionHref: "/collections/fisk-jubilee-repertoire",
+    collectionLabel: "Fisk Jubilee Repertoire",
   },
   {
     citation:
       "Work, John Wesley. Folk Song of the American Negro. Nashville: Fisk University Press, 1915.",
     note: "One of the earliest systematic academic studies of the spiritual tradition.",
+    collectionHref: null,
+    collectionLabel: null,
   },
   {
     citation:
       "Fenner, Thomas P. Cabin and Plantation Songs. New York: G.P. Putnam's Sons, 1874.",
     note: "Hampton collection documentation; particularly strong on Sea Islands traditions.",
+    collectionHref: "/collections/hampton-collection",
+    collectionLabel: "Hampton Collection",
   },
   {
     citation:
       "Allen, William Francis, Charles Pickard Ware, and Lucy McKim Garrison. Slave Songs of the United States. New York: A. Simpson & Co., 1867.",
     url: "https://www.gutenberg.org/ebooks/37340",
     note: "The first major published collection of spirituals. Collected during and just after the Civil War.",
+    collectionHref: null,
+    collectionLabel: null,
   },
 ];
 
@@ -44,26 +55,36 @@ const KEY_SCHOLARS = [
     name: "W.E.B. Du Bois (1868–1963)",
     contribution:
       'Sociologist, historian, and civil rights leader. His chapter "The Sorrow Songs" in The Souls of Black Folk (1903) established the critical framework for understanding spirituals as high art and as historical testimony.',
+    collectionHref: "/collections/du-bois-sorrow-songs",
+    collectionLabel: "Du Bois Sorrow Songs collection",
   },
   {
     name: "Dena Epstein (1916–2013)",
     contribution:
       "Music librarian and scholar. Sinful Tunes and Spirituals: Black Folk Music to the Civil War (1977) is the most comprehensive historical account of African American folk music in the antebellum period.",
+    collectionHref: null,
+    collectionLabel: null,
   },
   {
     name: "John Lovell Jr. (1907–1974)",
     contribution:
       "Scholar of African American literature. Black Song: The Forge and the Flame (1972) remains a definitive study of the spiritual tradition's theological and political dimensions.",
+    collectionHref: null,
+    collectionLabel: null,
   },
   {
     name: "John Wesley Work II (1873–1925)",
     contribution:
       "Musician and scholar at Fisk University. His Folk Song of the American Negro (1915) was among the first academic treatments of the spirituals by a Black scholar.",
+    collectionHref: "/collections/fisk-jubilee-repertoire",
+    collectionLabel: "Fisk Jubilee Repertoire collection",
   },
   {
     name: "James H. Cone (1938–2018)",
     contribution:
       "Theologian and founder of Black liberation theology. The Spirituals and the Blues (1972) reads the spirituals as a theology of liberation, inseparable from the conditions of oppression that produced them.",
+    collectionHref: null,
+    collectionLabel: null,
   },
 ];
 
@@ -87,7 +108,14 @@ export default function SourcesPage() {
           Deep River draws on public domain primary sources and the work of
           scholars who have dedicated their careers to understanding this
           tradition. What follows is a guide to the most important of those
-          resources.
+          resources. These sources inform the{" "}
+          <Link href="/spirituals" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            archive of spirituals
+          </Link>{" "}
+          and are organized around{" "}
+          <Link href="/collections" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+            four scholarly collections
+          </Link>.
         </p>
       </header>
 
@@ -104,16 +132,26 @@ export default function SourcesPage() {
                 <p className="text-sm font-sans text-foreground leading-relaxed mb-1">
                   {source.citation}
                 </p>
-                {source.url && (
-                  <a
-                    href={source.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
-                  >
-                    Available free online ↗
-                  </a>
-                )}
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
+                  {source.url && (
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
+                    >
+                      Available free online ↗
+                    </a>
+                  )}
+                  {source.collectionHref && source.collectionLabel && (
+                    <Link
+                      href={source.collectionHref}
+                      className="text-xs text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
+                    >
+                      Browse {source.collectionLabel} →
+                    </Link>
+                  )}
+                </div>
                 {source.note && (
                   <p className="text-xs text-muted-foreground mt-1">
                     {source.note}
@@ -139,6 +177,17 @@ export default function SourcesPage() {
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {scholar.contribution}
+                  {scholar.collectionHref && scholar.collectionLabel && (
+                    <>
+                      {" "}See the{" "}
+                      <Link
+                        href={scholar.collectionHref}
+                        className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
+                      >
+                        {scholar.collectionLabel}
+                      </Link>.
+                    </>
+                  )}
                 </p>
               </li>
             ))}
