@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COLLECTIONS, getCollectionBySlug } from "@/lib/collections";
 import { getSpiritualsByCollection } from "@/lib/spirituals";
@@ -59,6 +60,17 @@ export default async function CollectionPage({ params }: Props) {
               {paragraph}
             </p>
           ))}
+          <p className="text-sm text-muted-foreground leading-relaxed pt-4 border-t border-border">
+            The songs in this collection are drawn from{" "}
+            <Link href="/sources" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+              primary sources and scholarly collections
+            </Link>{" "}
+            in the public domain. Browse the{" "}
+            <Link href="/spirituals" className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors">
+              full archive
+            </Link>{" "}
+            to explore spirituals across all four collections.
+          </p>
         </div>
       </header>
 

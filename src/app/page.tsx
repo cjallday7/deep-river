@@ -54,6 +54,14 @@ export default function HomePage() {
             that, and to make the history and scholarship surrounding these works
             freely accessible to all.
           </p>
+          <p className="text-sm leading-relaxed text-parchment/60 max-w-2xl mt-3">
+            The archive is organized around{" "}
+            <Link href="/collections" className="underline underline-offset-2 hover:text-parchment/80 transition-colors">four scholarly collections</Link>
+            {" "}— Du Bois, Fisk, Hampton, and Lomax — and draws on{" "}
+            <Link href="/sources" className="underline underline-offset-2 hover:text-parchment/80 transition-colors">primary sources and peer scholarship</Link>.
+            {" "}Read more about our{" "}
+            <Link href="/about" className="underline underline-offset-2 hover:text-parchment/80 transition-colors">editorial approach and cultural commitments</Link>.
+          </p>
           <div className="mt-10 h-px bg-gold/40 w-12" />
         </div>
 
