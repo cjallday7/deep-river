@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Link2, Check } from "lucide-react";
 
 interface Props {
   title: string;
 }
+
+const noopSubscribe = () => () => {};
 
 export default function ShareButtons({ title }: Props) {
   const [copied, setCopied] = useState(false);
@@ -17,9 +19,13 @@ export default function ShareButtons({ title }: Props) {
     });
   }
 
-  const encodedUrl = typeof window !== "undefined"
-    ? encodeURIComponent(window.location.href)
-    : "";
+  // Empty during SSR and hydration, then the real URL — avoids a hydration mismatch.
+  const href = useSyncExternalStore(
+    noopSubscribe,
+    () => window.location.href,
+    () => ""
+  );
+  const encodedUrl = encodeURIComponent(href);
   const encodedTitle = encodeURIComponent(`"${title}" — Deep River`);
 
   const xUrl = `https://x.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
